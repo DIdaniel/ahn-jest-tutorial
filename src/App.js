@@ -49,7 +49,11 @@ function App() {
             +
           </button>
         </div>
-        <button onClick={handleOnOff} style={{ width: '80px' }}>
+        <button
+          data-testid="onOff-button"
+          onClick={handleOnOff}
+          style={{ width: '80px', background: 'blue' }}
+        >
           on/off
         </button>
       </div>
