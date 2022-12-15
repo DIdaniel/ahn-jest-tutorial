@@ -1,23 +1,58 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
+  const [count, setCount] = useState(0);
+
+  const [isOn, setIsOn] = useState(false);
+
+  const handlePlusCount = () => {
+    setCount(prev => prev + 1);
+  };
+
+  const handleMinusCount = () => {
+    setCount(prev => prev - 1);
+  };
+
+  const handleOnOff = () => {
+    setIsOn(prev => !prev);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <h3 data-testid="counter" style={{ color: 'red', marginBottom: '2rem' }}>
+        {count}
+      </h3>
+      <div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            width: '7rem',
+            marginBottom: '1rem'
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <button
+            data-testid="minus-button"
+            disabled={isOn}
+            onClick={handleMinusCount}
+            style={{ width: '60px', height: '30px' }}
+          >
+            -
+          </button>
+          <button
+            data-testid="plus-button"
+            disabled={isOn}
+            onClick={handlePlusCount}
+            style={{ width: '60px', height: '30px' }}
+          >
+            +
+          </button>
+        </div>
+        <button onClick={handleOnOff} style={{ width: '80px' }}>
+          on/off
+        </button>
+      </div>
     </div>
   );
 }
